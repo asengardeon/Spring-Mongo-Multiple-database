@@ -19,7 +19,6 @@ public class MultipleMongoConfig {
     @Autowired
     private Environment env;
 
-    @Primary
     @Bean(name = "mongoTemplate")
     @Conditional(PrimarioCondition.class)
     public MongoTemplate primaryMongoTemplate() throws Exception {

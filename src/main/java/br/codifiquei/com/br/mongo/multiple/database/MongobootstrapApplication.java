@@ -1,9 +1,7 @@
 package br.codifiquei.com.br.mongo.multiple.database;
 
 import br.codifiquei.com.br.mongo.multiple.database.models.PrimaryModel;
-import br.codifiquei.com.br.mongo.multiple.database.models.SecondaryModel;
 import br.codifiquei.com.br.mongo.multiple.database.repositories.primary.PrimaryRepository;
-import br.codifiquei.com.br.mongo.multiple.database.repositories.secondary.SecondaryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +18,7 @@ public class MongobootstrapApplication implements CommandLineRunner {
 	@Autowired
 	private PrimaryRepository primaryRepository;
 
-	@Autowired
-	private SecondaryRepository secondaryRepository;
-
 	private static Logger logger = LoggerFactory.getLogger(MongobootstrapApplication.class);
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(MongobootstrapApplication.class, args);
