@@ -33,7 +33,6 @@ public class MultipleMongoConfig {
     }
 
     @Bean
-    @Primary
     protected MongoDbFactory primaryFactory() throws Exception {
         String host = env.getProperty("spring.data.mongodb.primary.host", "localhost");
         String port = env.getProperty("spring.data.mongodb.primary.port", "27017");

@@ -13,7 +13,8 @@ public class TesteCondition implements Condition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        boolean cond = Boolean.parseBoolean(conditionContext.getEnvironment().getProperty("spring.data.isTest", "False"));
+        String[] profiles = conditionContext.getEnvironment().getActiveProfiles();
+        boolean cond = profiles.length > 0 && profiles[0].equals("test");
         return cond;
     }
 }
