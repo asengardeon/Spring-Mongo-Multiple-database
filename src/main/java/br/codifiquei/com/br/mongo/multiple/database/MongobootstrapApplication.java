@@ -37,18 +37,18 @@ public class MongobootstrapApplication implements CommandLineRunner {
 		logger.info("************************************************************");
 		this.primaryRepository.save(new PrimaryModel(null, "Primary database plain object"));
 
-		this.secondaryRepository.save(new SecondaryModel(null, "Secondary database plain object"));
+//		this.secondaryRepository.save(new SecondaryModel(null, "Secondary database plain object"));
 
 		List<PrimaryModel> primaries = this.primaryRepository.findAll();
 		for (PrimaryModel primary : primaries) {
 			logger.info(primary.toString());
 		}
 
-		List<SecondaryModel> secondaries = this.secondaryRepository.findAll();
-
-		for (SecondaryModel secondary : secondaries) {
-			logger.info(secondary.toString());
-		}
+//		List<SecondaryModel> secondaries = this.secondaryRepository.findAll();
+//
+//		for (SecondaryModel secondary : secondaries) {
+//			logger.info(secondary.toString());
+//		}
 
 		logger.info("************************************************************");
 		logger.info("Ended printing mongo objects");

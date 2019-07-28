@@ -3,6 +3,7 @@ package br.codifiquei.com.br.mongo.multiple.database.configs;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
@@ -19,12 +20,14 @@ public class MultipleMongoConfig {
     private Environment env;
 
     @Primary
-    @Bean(name = "primaryMongoTemplate")
+    @Bean(name = "mongoTemplate")
+    @Conditional(PrimarioCondition.class)
     public MongoTemplate primaryMongoTemplate() throws Exception {
         return new MongoTemplate(primaryFactory());
     }
 
-    @Bean(name = "secondaryMongoTemplate")
+    @Bean(name = "mongoTemplate")
+    @Conditional(TesteCondition.class)
     public MongoTemplate secondaryMongoTemplate() throws Exception {
         return new MongoTemplate(secondaryFactory());
     }
