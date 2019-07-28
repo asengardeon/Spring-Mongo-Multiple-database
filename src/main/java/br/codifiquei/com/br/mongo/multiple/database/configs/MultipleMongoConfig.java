@@ -1,7 +1,6 @@
-package br.codifiquei.com.br.Mongo.Multiple.database.configs;
+package br.codifiquei.com.br.mongo.multiple.database.configs;
 
 import com.mongodb.MongoClient;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +13,10 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 
 @Configuration
-@RequiredArgsConstructor
 public class MultipleMongoConfig {
 
     @Autowired
-    Environment env;
+    private Environment env;
 
     @Primary
     @Bean(name = "primaryMongoTemplate")
@@ -33,19 +31,19 @@ public class MultipleMongoConfig {
 
     @Bean
     @Primary
-    public MongoDbFactory primaryFactory() throws Exception {
-        String host = env.getProperty("spring.data.mongodb.primary.host");
-        String port = env.getProperty("spring.data.mongodb.primary.port");
-        String database = env.getProperty("spring.data.mongodb.primary.database");
+    protected MongoDbFactory primaryFactory() throws Exception {
+        String host = env.getProperty("spring.data.mongodb.primary.host", "localhost");
+        String port = env.getProperty("spring.data.mongodb.primary.port", "27017");
+        String database = env.getProperty("spring.data.mongodb.primary.database", "");
         return new SimpleMongoDbFactory(new MongoClient(host, Integer.valueOf(port)),
                 database);
     }
 
     @Bean
-    public MongoDbFactory secondaryFactory() throws Exception {
-        String host = env.getProperty("spring.data.mongodb.secondary.host");
-        String port = env.getProperty("spring.data.mongodb.secodary.port");
-        String database = env.getProperty("spring.data.mongodb.secondary.database");
+    protected MongoDbFactory secondaryFactory() throws Exception {
+        String host = env.getProperty("spring.data.mongodb.secondary.host", "localhost");
+        String port = env.getProperty("spring.data.mongodb.secondary.port", "27017");
+        String database = env.getProperty("spring.data.mongodb.secondary.database", "");
         return new SimpleMongoDbFactory(new MongoClient(host, Integer.valueOf(port)),
                 database);
     }

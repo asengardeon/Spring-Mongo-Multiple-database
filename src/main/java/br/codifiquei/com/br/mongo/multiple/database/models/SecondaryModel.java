@@ -1,21 +1,22 @@
-package br.codifiquei.com.br.Mongo.Multiple.database.models;
+package br.codifiquei.com.br.mongo.multiple.database.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Document(collection = "second_mongo")
 public class SecondaryModel {
+
 
     @Id
     private String id;
 
+    private Object o;
     private String value;
+
+    public SecondaryModel(Object o, String value) {
+        this.o = o;
+        this.value = value;
+    }
 
     @Override
     public String toString() {

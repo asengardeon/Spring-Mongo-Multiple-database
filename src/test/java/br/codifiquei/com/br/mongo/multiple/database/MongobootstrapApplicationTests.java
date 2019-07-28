@@ -1,4 +1,4 @@
-package br.codifiquei.com.br.Mongo.Multiple.database;
+package br.codifiquei.com.br.mongo.multiple.database;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
